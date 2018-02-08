@@ -26,7 +26,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ls-Oe-Kwp">
                                 <rect key="frame" x="0.0" y="44" width="375" height="579"/>
                                 <subviews>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dg6-w7-eba">
+                                    <imageView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="dg6-w7-eba">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="579"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
@@ -69,6 +69,9 @@
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TsG-Si-WDO">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="SJP-L7-OYM"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="7fF-0L-rJH"/>
                                     <barButtonItem enabled="NO" style="plain" systemItem="camera" id="CyN-Nl-Ysc">
@@ -87,6 +90,9 @@
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2u8-Sl-18K">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="OUR-W6-yoD"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem systemItem="action" id="wfy-Nc-LZ5">
                                         <connections>

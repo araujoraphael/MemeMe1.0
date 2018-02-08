@@ -134,26 +134,40 @@ class MemeEditorViewController: UIViewController {
     
     private func createMeme() -> Meme?{
         let imageFrame = AVMakeRect(aspectRatio: self.imageView.image!.size, insideRect: self.imageView.bounds)
-        
+
         var memeTexts = [String: NSAttributedString]()
-        var memeTextsPositions = [String: CGPoint]()
+        var isThereBottomText = false
+        
         if self.topTextField.text != "" {
             let topText = self.topTextField.attributedText!
-            let topTextX = imageFrame.size.width/2 - self.topTextField.frame.size.width/2
             memeTexts.updateValue(topText, forKey: "top")
-            memeTextsPositions.updateValue(CGPoint(x: topTextX,y:textDistanceFromImageBorder), forKey: "top")
         }
         
         if self.bottomTextField.text != ""{
             let bottomText = self.bottomTextField.attributedText!
-            let bottomTextX = imageFrame.size.width/2 - self.bottomTextField.frame.size.width/2
-            let bottomTextY = imageFrame.size.height - (self.bottomTextField.frame.size.height + self.textDistanceFromImageBorder)
             memeTexts.updateValue(bottomText, forKey: "bottom")
-            memeTextsPositions.updateValue(CGPoint(x: bottomTextX,y:bottomTextY), forKey: "bottom")
+            isThereBottomText = true
         }
         
+        let memeTextsPositions = topTextPosition(forFrame: imageFrame, includeBottom: isThereBottomText)
+
         let meme = Meme(texts: memeTexts, toImage: self.imageView.image!, withImageSize: imageFrame.size, atPositions: memeTextsPositions)
         return meme
+    }
+    
+    private func topTextPosition(forFrame frame: CGRect, includeBottom: Bool) -> [String: CGPoint] {
+
+        var textPositions = [String: CGPoint]()
+        let topTextX = frame.size.width/2 - self.topTextField.frame.size.width/2
+        textPositions.updateValue(CGPoint(x: topTextX,y:textDistanceFromImageBorder), forKey: "top")
+        
+        if includeBottom {
+            let bottomTextX = frame.size.width/2 - self.bottomTextField.frame.size.width/2
+            let bottomTextY = frame.size.height - (self.bottomTextField.frame.size.height + self.textDistanceFromImageBorder)
+            textPositions.updateValue(CGPoint(x: bottomTextX,y:bottomTextY), forKey: "bottom")
+        }
+        
+        return textPositions
     }
 }
 
